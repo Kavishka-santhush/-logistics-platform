@@ -32,16 +32,27 @@ function fileFilter(_req, file, cb) {
   cb(badRequest(`Unsupported file type: ${file.mimetype}`));
 }
 
-/** Returns a Multer instance scoped to a category folder (e.g. 'vehicles', 'pod'). */
+/** Returns a multipart parser for a category folder (e.g. 'vehicles', 'pod').
+ * Use as [uploader('pod').middleware, uploader('pod').fields([...])] or call
+ .parse* after the category is set on req by the caller. */
 function uploader(category, { maxCount = 10 } = {}) {
-  return multer({
+  const instance = multer({
     storage,
     fileFilter,
     limits: { fileSize: config.maxFileSizeBytes, files: maxCount },
-  }).use((req, _res, next) => {
+  });
+  // diskStorage.destination reads req.uploadCategory; set it before parsing.
+  const middleware = (req, _res, next) => {
     req.uploadCategory = category;
     next();
-  });
+  };
+  return {
+    middleware,
+    instance,
+    single: (name) => [middleware, instance.single(name)],
+    fields: (fields) => [middleware, instance.fields(fields)],
+    array: (name) => [middleware, instance.array(name, maxCount)],
+  };
 }
 
 // Convenience pre-configured uploaders per domain
