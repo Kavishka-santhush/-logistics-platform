@@ -27,6 +27,10 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev', { stream: { write: (msg) => logger.info(msg.trim()) } }));
 
+// Health check MUST be registered before clerkMiddleware: Clerk's key validation
+// throws on every request when CLERK_PUBLISHABLE_KEY is absent/invalid.
+app.get('/api/health', (req, res) => res.json({ ok: true, ts: new Date().toISOString() }));
+
 // Clerk authentication (verifies JWTs; route-level guards decide public vs protected)
 app.use(clerkMiddleware());
 
@@ -63,8 +67,6 @@ app.use('/api/notifications', require('./routes/notification.routes'));
 app.use('/api/ai', require('./routes/ai.routes'));
 app.use('/api/reports', require('./routes/report.routes'));
 app.use('/api/admin', require('./routes/admin.routes'));
-
-app.get('/api/health', (req, res) => res.json({ ok: true, ts: new Date().toISOString() }));
 
 // 404
 app.use((req, res) => res.status(404).json({ success: false, message: 'Route not found' }));
