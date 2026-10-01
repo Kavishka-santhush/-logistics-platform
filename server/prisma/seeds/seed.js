@@ -339,7 +339,7 @@ async function main() {
   // part 2 (orders, routes, dispatch, warehouse, maintenance, fuel, compliance,
   // invoicing, notifications, analytics) is loaded from the continuation module
   const seedPartTwo = require('./seed.part2');
-  await seedPartTwo(prisma, ctx, { at, orderNo, tracking, invNo, mwoNo, incNo, grnNo, cnNo, pad });
+  await seedPartTwo(prisma, ctx, { day, at, orderNo, tracking, invNo, mwoNo, incNo, grnNo, cnNo, pad });
 
   console.log('\n✅ seed complete');
   console.log('   super admin : root@quodor.io');

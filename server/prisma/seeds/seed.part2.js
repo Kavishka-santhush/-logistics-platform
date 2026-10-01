@@ -4,7 +4,7 @@
  * ========================================================================== */
 
 module.exports = async function seedPartTwo(prisma, ctx, H) {
-  const { at, orderNo, tracking, invNo, mwoNo, incNo, grnNo, cnNo } = H;
+  const { day, at, orderNo, tracking, invNo, mwoNo, incNo, grnNo, cnNo } = H;
   const { org, branches, drivers, vehicles, customers, users } = ctx;
 
   // ─── Warehouses & Inventory ────────────────────────────────────────────────
