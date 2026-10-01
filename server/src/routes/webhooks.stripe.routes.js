@@ -1,9 +1,9 @@
 const { Router, raw } = require('express');
-const logger = require('../../utils/logger.util');
-const config = require('../../config');
-const stripeLib = require('../../lib/stripe');
-const prisma = require('../../lib/prisma');
-const invoiceSvc = require('../../services/invoice.service');
+const logger = require('../utils/logger.util');
+const config = require('../config');
+const stripeLib = require('../lib/stripe');
+const prisma = require('../lib/prisma');
+const invoiceSvc = require('../services/invoice.service');
 
 const router = Router();
 

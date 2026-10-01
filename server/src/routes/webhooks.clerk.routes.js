@@ -1,8 +1,8 @@
 const { Router, raw } = require('express');
-const logger = require('../../utils/logger.util');
-const config = require('../../config');
-const authSvc = require('../../services/auth.service');
-const prisma = require('../../lib/prisma');
+const logger = require('../utils/logger.util');
+const config = require('../config');
+const authSvc = require('../services/auth.service');
+const prisma = require('../lib/prisma');
 
 const router = Router();
 
