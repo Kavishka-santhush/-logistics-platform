@@ -773,7 +773,7 @@ model DriverPerformanceSnapshot {
 model HoursOfServiceLog {
   id             String   @id @default(uuid())
   driverId       String
-  driver         Driver   @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  driver         Driver   @relation("MessageDriver", fields: [driverId], references: [id], onDelete: Cascade)
   logDate        DateTime
   drivingMinutes Int      @default(0)
   onDutyMinutes  Int      @default(0)
@@ -887,7 +887,6 @@ model Order {
   @@index([assignedDriverId, status])
   @@index([routeId])
   @@index([trackingNumber])
-  @@fulltext([orderNumber, trackingNumber, deliveryAddressLine, deliveryCity])
   @@map("orders")
 }
 
@@ -1215,7 +1214,6 @@ model InventoryItem {
 
   @@unique([warehouseId, sku])
   @@index([organizationId])
-  @@fulltext([sku, name])
   @@map("inventory_items")
 }
 
@@ -1546,7 +1544,6 @@ model Customer {
   slaBreaches SlaBreach[]
 
   @@index([organizationId, tier])
-  @@fulltext([companyName, contactName, email])
   @@map("customers")
 }
 

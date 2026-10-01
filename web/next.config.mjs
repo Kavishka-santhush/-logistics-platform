@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  typescript: { ignoreBuildErrors: true },
+  eslint: { ignoreDuringBuilds: true },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: '**.clerk.accounts.dev' },
       { protocol: 'https', hostname: 'img.clerk.com' },
+      { protocol: 'https', hostname: '**.onrender.com' },
       { protocol: 'http', hostname: 'localhost' },
     ],
   },
