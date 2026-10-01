@@ -773,7 +773,7 @@ model DriverPerformanceSnapshot {
 model HoursOfServiceLog {
   id             String   @id @default(uuid())
   driverId       String
-  driver         Driver   @relation("MessageDriver", fields: [driverId], references: [id], onDelete: Cascade)
+  driver         Driver   @relation(fields: [driverId], references: [id], onDelete: Cascade)
   logDate        DateTime
   drivingMinutes Int      @default(0)
   onDutyMinutes  Int      @default(0)
@@ -1820,7 +1820,7 @@ model AuditLog {
 model DriverMessage {
   id             String   @id @default(uuid())
   driverId       String
-  driver         Driver   @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  driver         Driver   @relation("MessageDriver", fields: [driverId], references: [id], onDelete: Cascade)
   senderId       String?
   sender         User?    @relation("MessageSender", fields: [senderId], references: [id], onDelete: SetNull)
   receiverId     String?
