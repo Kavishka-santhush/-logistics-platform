@@ -5,7 +5,7 @@
 
 module.exports = async function seedPartTwo(prisma, ctx, H) {
   const { day, at, orderNo, tracking, invNo, mwoNo, incNo, grnNo, cnNo } = H;
-  const { org, branches, drivers, vehicles, customers, users } = ctx;
+  const { org, branches, drivers, vehicles, customers, users, driverUsers } = ctx;
 
   // ─── Warehouses & Inventory ────────────────────────────────────────────────
   console.log('   🏭 warehouses & inventory…');
@@ -307,7 +307,7 @@ module.exports = async function seedPartTwo(prisma, ctx, H) {
     { organizationId: org.id, userId: drivers[2].userId, type: 'SPEED_VIOLATION', channel: 'PUSH', title: 'Speed violation', body: 'Exceeded 90 km/h threshold', payload: { vehicleId: vehicles[2].id, speed: 118 }, createdAt: at(-0.15) },
     { organizationId: org.id, userId: users.staff.ORG_ADMIN.id, type: 'GEOFENCE_BREACH', channel: 'IN_APP', title: 'Geofence exit', body: 'RTM-V-101 left Rotterdam DC Zone', payload: { geofenceId: gf.id, vehicleId: vehicles[0].id }, createdAt: at(-0.3) },
   ] });
-  for (const u of [users.staff.ORG_ADMIN, drivers[0].user]) {
+  for (const u of [users.staff.ORG_ADMIN, driverUsers[0]]) {
     await prisma.notificationPreference.createMany({
       data: ['NEW_ORDER', 'ASSIGNMENT', 'DELIVERY_COMPLETED', 'DOCUMENT_EXPIRY'].map((t) => ({ userId: u.id, type: t, inApp: true, email: t === 'DOCUMENT_EXPIRY', push: true, webPush: false })),
     });
