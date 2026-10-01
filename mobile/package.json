@@ -1,0 +1,43 @@
+{
+  "name": "swiftfreight-driver",
+  "version": "1.0.0",
+  "main": "expo-router/entry",
+  "private": true,
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "lint": "expo lint"
+  },
+  "dependencies": {
+    "@clerk/clerk-expo": "^2.2.0",
+    "expo": "~51.0.0",
+    "expo-constants": "~16.0.2",
+    "expo-linking": "~6.3.1",
+    "expo-router": "~3.5.14",
+    "expo-secure-store": "~13.0.2",
+    "expo-status-bar": "~1.12.1",
+    "expo-task-manager": "~11.8.2",
+    "expo-location": "~17.0.1",
+    "expo-camera": "~15.0.10",
+    "expo-image-picker": "~15.0.5",
+    "expo-image-manipulator": "~12.0.5",
+    "expo-notifications": "~0.28.7",
+    "expo-file-system": "~17.0.1",
+    "react": "18.2.0",
+    "react-native": "0.74.5",
+    "react-native-reanimated": "~3.10.1",
+    "react-native-safe-area-context": "4.10.5",
+    "react-native-screens": "3.31.1",
+    "react-native-svg": "15.2.0",
+    "react-native-url-polyfill": "^2.0.0",
+    "socket.io-client": "^4.7.5",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@types/react": "~18.2.79",
+    "typescript": "~5.3.3"
+  }
+}

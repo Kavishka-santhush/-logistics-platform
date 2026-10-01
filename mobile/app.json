@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "SwiftFreight Driver",
+    "slug": "swiftfreight-driver",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "swiftfreightdriver",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": false,
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "io.quodor.swiftfreight.driver",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We share your live location with dispatch while on duty.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Background tracking lets dispatch follow your route.",
+        "NSCameraUsageDescription": "Capture proof of delivery photos.",
+        "UIBackgroundModes": ["location"]
+      }
+    },
+    "android": {
+      "package": "io.quodor.swiftfreight.driver",
+      "adaptiveIcon": { "backgroundColor": "#2563EB" },
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_BACKGROUND_LOCATION", "CAMERA", "INTERNET"]
+    },
+    "web": { "bundler": "metro" },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-location",
+        { "locationAlwaysAndWhenInUsePermission": "Allow SwiftFreight to use your location while on duty." }
+      ],
+      ["expo-camera", { "cameraPermission": "Allow SwiftFreight to capture proof of delivery." }],
+      ["expo-notifications", { "color": "#2563EB" }]
+    ],
+    "extra": {
+      "apiUrl": "http://localhost:5000/api",
+      "socketUrl": "http://localhost:5000",
+      "clerkPublishableKey": ""
+    }
+  }
+}
